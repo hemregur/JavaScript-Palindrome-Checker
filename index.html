@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    *,
+    p {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        box-sizing: border-box;
+        background: url("bg.jpeg") no-repeat;
+        background-size: cover;
+    }
+
+    .container {
+        scale: 1.2;
+    }
+
+    .box {
+        min-width: 350px;
+        text-align: center;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 18px;
+        border: 2px solid #ffffff92;
+        border-radius: 8px;
+    }
+
+    .box p {
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    #warning {
+        margin: 16px 0px 16px;
+        color: #ffffffcd;
+    }
+
+    .out {
+        height: 30px;
+        line-height: 30px;
+        display: block;
+        font-size: 18px;
+    }
+
+    #drome {
+        margin-bottom: 20px;
+        width: 100%;
+        display: block;
+        font-size: 18px;
+        padding: 10px 0px 10px 10px;
+        box-sizing: border-box;
+        border: 4px solid #0000000f;
+        border-radius: 8px;
+    }
+
+    #btn {
+        width: 100%;
+        display: block;
+        font-size: 18px;
+        background-color: #ffc675c3;
+        padding: 10px 0px 10px 0px;
+        box-sizing: border-box;
+        border: 4px solid #0000001e;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .copyright {
+        color: #fff;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <p>Palindrom Kontrolcüsü</p>
+            <div class="out"></div>
+            <input type="text" placeholder="Bir şeyler dene..." name="palin" id="drome">
+            <button type="submit" id="btn">Kontrol Et</button>
+        </div>
+        <p id="warning">*Palindrom, tersten okunuşu da aynı olan cümle, sözcük ve sayılara denilmektedir.</p>
+    </div>
+    <div class="copyright">© by HEG</div>
+</body>
+<script>
+    let out = document.querySelector(".out");
+    let text = document.querySelector("#drome");
+    let textVal;
+    let textVal2;
+    let submit = document.querySelector("#btn");
+
+    function polindrom() {
+        textVal = text.value;
+        textVal2 = text.value.split("").reverse().join(""); // 1) split("") ile karakterleri ayırdık 2) reverse() ile ters çevirdik 3) join("") ile birleştirdik.
+
+        if (textVal.length) {
+            if (textVal === textVal2) {
+                out.innerText = "Tebrikler, bu bir Palindrom!";
+                out.style.color = "#d1f1ff";
+            } else {
+                out.innerText = "Hata, bu bir Palindrom değldir!";
+                out.style.color = "#ffd1d1";
+            }
+        } else {
+            out.innerText = "Hata, boş bırakılamaz!";
+            out.style.color = "#ffd1d1";
+        }
+    }
+    submit.addEventListener('click', polindrom);
+    document.addEventListener('keypress', () => {
+        if (event.key === "Enter") {
+            polindrom();
+        }
+    });
+</script>
+
+</html>
